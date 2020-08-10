@@ -7,8 +7,8 @@ router.post("/signup", userController.signup);
 
 router.post("/login", userController.login);
 
-router.post(
-  "/auth/jwt",
+router.get(
+  "readuser",
   passport.authenticate("jwt", { session: false }),
   userController.readUser
 );
