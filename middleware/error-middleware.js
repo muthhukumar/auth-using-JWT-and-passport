@@ -5,7 +5,7 @@ module.exports.routeNotFound = (req, res, next) => {
 module.exports.errorHandler = (err, req, res, next) => {
   res.status(500);
   res.send({
-    error: err,
+    error: err.message,
     stack: process.env.NODE_ENV === "DEVELOPMENT" ? err.stack : null,
   });
 };

@@ -42,6 +42,7 @@ app.use("/user", createAccountLimiter, userRoute);
 app.use(middlewares.routeNotFound);
 app.use(middlewares.errorHandler);
 
-app.listen(5000, () => {
-  console.log("Serving at http://localhost:5000");
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`Serving at https://localhost:${PORT}`);
 });
