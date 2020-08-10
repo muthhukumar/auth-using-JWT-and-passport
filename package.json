@@ -13,6 +13,9 @@
   "devDependencies": {
     "nodemon": "^2.0.4"
   },
+  "engine": {
+    "node": "^13.8.1"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
