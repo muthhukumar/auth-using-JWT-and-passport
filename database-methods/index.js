@@ -5,7 +5,7 @@ userSchema.methods.getIfadult = function () {
 };
 
 userSchema.statics.getAdults = async function (callback) {
-  this.find({ age: { $gt: 18 } }, callback);
+  this.find({ age: { $gt: 18 } }, callback).select('-password');
 };
 
 userSchema.virtual("fullname").get(function () {
