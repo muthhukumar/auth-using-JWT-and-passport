@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const { User } = require("../../schema/userSchema");
+const User = require("../../schema/userSchema");
 const jwt = require("jsonwebtoken");
 
 module.exports.signup = async (req, res, next) => {
