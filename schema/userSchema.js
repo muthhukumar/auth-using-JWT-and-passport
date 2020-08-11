@@ -19,7 +19,14 @@ const newUser = new Schema({
     type: String,
     required: true,
   },
+  age: {
+    type: Number,
+  },
 });
+
+module.exports.userSchema = newUser;
+
+require("../database-methods/index");
 
 const User = mongoose.model("User", newUser);
 

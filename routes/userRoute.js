@@ -19,4 +19,6 @@ router.post(
   userController.loginUser
 );
 
+router.get("/adults", userController.getAdults);
+
 module.exports = router;

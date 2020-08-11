@@ -1,11 +1,11 @@
 const bcrypt = require("bcryptjs");
-const User = require("../../schema/userSchema");
+const { User } = require("../../schema/userSchema");
 const jwt = require("jsonwebtoken");
 
 module.exports.signup = async (req, res, next) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstname, lastname, email, password, age } = req.body;
 
-  if (!firstname || !lastname || !email || !password)
+  if (!firstname || !lastname || !email || !password || !age)
     return next(new Error("check credentials and try again"));
 
   const newUser = new User({
@@ -13,6 +13,7 @@ module.exports.signup = async (req, res, next) => {
     lastname,
     email,
     password,
+    age,
   });
 
   let hashedPassword;
@@ -74,6 +75,12 @@ module.exports.loginUser = (req, res, next) => {
   const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
     expiresIn: "1h",
   });
-
   res.json({ token });
+};
+
+module.exports.getAdults = (req, res, next) => {
+  User.getAdults(function (err, users) {
+    if (err) return next(new Error("something went wrong"));
+    res.json({ adults: users });
+  });
 };
