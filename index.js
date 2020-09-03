@@ -19,12 +19,6 @@ const apiLimiter = rateLimit({
   max: 100,
 });
 
-const createAccountLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour window
-  max: 5, // start blocking after 5 requests
-  message:
-    "Too many accounts created from this IP, please try again after an hour",
-});
 
 app.use(apiLimiter);
 app.use(bodyParser.json());
@@ -37,7 +31,7 @@ app.use(passport.initialize());
 require("./passport/strategy/jwt/index");
 require("./passport/strategy/local/index");
 
-app.use("/user", createAccountLimiter, userRoute);
+app.use("/user", userRoute);
 
 app.use(middlewares.routeNotFound);
 app.use(middlewares.errorHandler);
